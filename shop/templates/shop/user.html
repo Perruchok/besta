@@ -1,0 +1,142 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+
+{% block main %}
+  <br></br>
+  <div class=" border-top border-bottom border-warning titulos">
+    Bienvenido a tu cuenta BESTA
+  </div>
+    <br></br>
+   
+   {% if messages %}
+      {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+      {% endfor %}
+   {% endif %}
+
+    <br></br>
+    <div class="containeruser">
+      <div class="item">
+        <img src="{% static 'shop/icons/user2.png'%}" alt=noalt>
+      </div>
+      <div class="user_container">
+        <div class="item_user" type="button" data-bs-toggle="modal" data-bs-target="#Modal1">
+          <p> Dirección y contacto </p>
+        </div>
+        <a class ="nolink" href="{% url 'pedidos' %}">
+          <div class="item_user" type="button" >
+            <p> Mis compras  </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <br></br>
+    <br></br>
+    <br></br>
+
+<!-- Modal For dirección y contacto -->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dirección y contacto</h5>
+      </div>
+      <div class="modal-body">
+        {% if info.telefono != None %}
+          <h5>Contacto </h5>
+          <p>Nombre completo: {{ info.nombre }}</p>
+          <p>Telefono: {{ info.telefono  }}</p>
+          <hr>
+          <h5>Dirección de envío </h5>
+          <p> Dirección: {{ info.direccion }}</p>
+          <p> Código postal: {{ info.cpp }}</p>
+        {% else %}
+          <p>Aún no has actualizado tu información de usuario. ¡Actualízala ahora para poder comprar!</p>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal3">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Compras -->
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mis compras</h5>
+      </div>
+      <div class="modal-body">
+        <h5> En proceso </h5>
+        {% if onprocess %}
+          <p>{{ onprocess }}</p>
+        {% else %}
+          <p>No tienes ningúna compra en proceso. ¡¿Qué estás esperando ?!</p>
+        {% endif %}
+        <hr>
+        <h5> Historial </h5>
+        {% if historial %}
+          <p>{{ historial }}</p>
+        {% else %}
+          <p>...</p>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--- Actualizar información de contacto -->
+<div class="modal fade bd-example-modal-lg" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dirección y contacto</h5>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'user' %}" method="post">
+          {% csrf_token %}
+          <p> Tus pedidos serán enviados en base a esta información. Asegúrate de llenarla correctamente.</p>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nombre Completo: </label>
+            <input type="text" class="form-control" id="recipient-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Número telefónico: </label>
+            <input type="text" class="form-control" id="recipient-name" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Código postal: </label>
+            <input type="text" class="form-control" id="recipient-name" name="cp" required>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Dirección: </label>
+            <br></br>
+            <textarea class="form-control" id="message-text" name="adress" required></textarea>
+            <p> No olvides agregar una referencia en la dirección </p>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+

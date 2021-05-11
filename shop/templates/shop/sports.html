@@ -1,0 +1,81 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+
+{% block main %}
+<br></br>
+  <div class="titulos border-top border-bottom border-warning">
+    Sport
+  </div>
+  <br></br>
+  <div class="containersport">
+    {%  for item in sports %}
+    <div class="item" >
+      <form action ="/sport" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="item_id" value="{{ item.id }}">
+        <button type="submit" class="button_sport">
+            <div class="imageblur">
+              <img src ="{{ item.pic0 }}">
+            </div>
+            <p> </p>
+            <p class="item_name">{{ item.nombre }}</p>
+            <p class="item_price">${{ item.precio }}.00</p>
+        </button>
+      </form>
+    </div>
+    {% endfor  %}
+  </div>
+
+  <br></br>
+
+{% endblock %}
+
+<!--- </div>
+  <br></br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 item">
+            <img src="/static/sport1.jpg">
+            <br></br>
+            <p>Blusa nombre1</p>
+            <p>$150.00</p>
+      </div>
+      <div class="col-sm-4">
+            <img src="/static/sport2.jpg">
+            <br></br>
+            <p>Blusa Nombre2</p>
+            <p>$150.00</p>
+      </div>
+      <div class="col-sm-4">
+          <img src="/static/sport3.jpg">
+          <br></br>
+          <p>Short rosado</p>
+          <p>$200.00</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+            <img src="/static/sport1.jpg">
+            <br></br>
+            <p>Blusa adfadfa</p>
+            <p>$150.00</p>
+      </div>
+      <div class="col-sm-4">
+            <img src="/static/sport2.jpg">
+            <br></br>
+            <p>Bdfds fdadsf </p>
+            <p>$150.00</p>
+      </div>
+      <div class="col-sm-4">
+          <img src="/static/sport3.jpg">
+          <br></br>
+          <p>Bkjhdfa ajdhfa</p>
+          <p>$150.00</p>
+      </div>
+    </div>
+
+  </div>
+
+  <br></br>
+
+  -->

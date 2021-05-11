@@ -1,0 +1,94 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+
+{% block main %}
+
+  <div class="titulos border-top border-bottom border-warning">
+    Mis compras
+  </div>
+  <br></br>
+
+   {% if messages %}
+      {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+     {% endif %}
+
+
+  {% if empty %}
+    <h4> Aún no tienes pedidos  </h4>
+    <a href="/"> Seguir comprando </a>
+    <br></br>
+  {% else %}
+    <div class = "container_cart" style="overflow-x:auto;">
+        {% for ped_ord,total,ped_sets in ped_master %}
+            <h4>Pedido: {{ ped_ord }} </h4>
+            <div style="overflow-x:auto;">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">Artículo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Estatus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for pedido in ped_sets %}
+                  <tr>
+                      <td>
+                        <img src="{{ pedido.item.pic0 }}" class = "pedidos_img">
+                        <h5>{{ pedido.nombre }}</h5>
+                        Talla: {{ pedido.talla }}
+                      </td>
+                      <td>
+                        <h5>{{ pedido.cantidad }}</h5>
+                      </td>
+                      <td>
+                        <h5>${{ pedido.item.precio }}.00</h5>
+                      </td>
+                      <td>
+                        <h5>{{ pedido.estatus }}</h5>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+                    <td colspan="2">
+                      <h4>Total a pagar: ${{ total }}.00</h4>
+                    </td>
+                   <td colspan="2">
+                      Escribe el folio de tu comprobante de pago aquí:
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">
+
+                    </td >
+                    <td>
+                      <form class="form-inline" action ="{% url 'pedidos' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group mx-sm-3 mb-2">
+                          <input type="password" class="form-control input_folio" name="Folio" placeholder="Folio" required>
+                          <input type="hidden" name="no_pedido" value="{{ ped_ord }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Subir Folio</button>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          <br></br>
+        {% endfor %}
+    </div>
+  {% endif %}
+
+
+{% endblock %}

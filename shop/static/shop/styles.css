@@ -1,0 +1,248 @@
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+.titulos
+{
+    font-size: 50px;
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+.containersport
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /*border: 1px solid;*/
+  width: 70%;
+  margin:auto ;
+}
+
+.containeritem , .containeruser
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin:auto ;
+}
+.nolink{
+    text-decoration:none;
+    color:black;
+}
+.containeritem div{
+    padding : 10px;
+    /*flex-direction : row;*/
+}
+
+.container_cart {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    margin:auto ;
+}
+
+.container_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid;
+    justify-content:space-between;
+    margin: 2px;
+    width:60%;
+}
+
+.pedido{
+    width:60%;
+    display:flex;
+    justify-content:space-between;
+
+}
+.sub_item_carrito {
+
+    margin-top: 0px ;
+    margin-right: 50px;
+    margin-bottom: 0px;
+    margin-left: 50px;
+}
+
+.user_container
+{
+    flex-direction: column;
+}
+
+.container div
+{
+    padding : 10px;
+    /*flex-direction : row;*/
+}
+
+.item_view
+{
+    width:50%;
+}
+
+.item:hover
+{
+    text-decoration: underline;
+
+}
+
+
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.imageblur:hover
+{
+  opacity: .5;
+}
+
+
+.item_user
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:300px;
+    height: 80px ;
+    /*border: 1px solid;*/
+    border-color: grey;
+    margin: 10px;
+    border-radius: 5px;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 20px;
+    background-color: rgb(255, 204, 0);
+}
+.item_user:hover
+{
+    background: grey;
+
+}
+
+.item_price{
+    color:rgb(89, 97, 110);
+}
+.nav-item
+{
+    font-family: "Lucida Console", Courier, monospace;
+    font-size:20px;
+    /*border: 1px solid;*/
+}
+
+.my_nav_block
+{
+    border: 3px solid;
+    justify-content: space-between;
+}
+
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}
+
+carousel-item {
+height: 300px;
+overflow: hidden;
+width: 100%;
+}
+.carousel-item img {
+width: 100%;
+}
+
+.img_carrito{
+width: 200px;
+}
+
+.img_compras{
+width: 100px;
+}
+
+.total{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:800px;
+}
+
+.estatus{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.item
+{
+    width:300px;
+    margin: 10px;
+    line-height: 0.5;
+    font-family: "Lucida Console", Courier, monospace;
+    /*border: 1px solid;*/
+}
+
+.button_sport{
+    background-color:white;
+    border:none;
+}
+
+.pedidos_img{
+    width:70px;
+}
+
+@media (max-width: 768px) {
+
+    .containersport, .containeritem, .container_cart
+    {
+        width:100%;
+    }
+    .item {
+        width:40%;
+        line-height: 1;
+        font-family: "Lucida Console", Courier, monospace;
+
+        }
+    .button_sport{
+        width:100%;  /*Must math item width */
+        height:100%;
+        border-radius: 2px;
+        padding:0px;
+        background-color:white;
+        border:none;
+    }
+    .item_view{
+        width:100%;
+    }
+    .titulos{
+        font-size: 25px;
+    }
+}
+
+
+

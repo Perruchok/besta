@@ -1,0 +1,129 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+
+{% block main %}
+
+  <div class="titulos border-top border-bottom border-warning">
+    Mis compras
+  </div>
+  <br></br>
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+     {% endif %}
+  {% endwith %}
+
+
+  {% if empty %}
+    <h4> Aún no tienes pedidos  </h4>
+    <a href="/"> Seguir comprando </a>
+    <br></br>
+  {% else %}
+    <div class = "container_cart" >
+      {% for pedido,total in ped_ord %}
+        <div class>
+          <h4>Pedido: {{ pedido[0]["date"] }} </h4>
+        </div>
+        <div class = "container_item">
+          <div class="img_carrito sub_item_carrito">
+          </div>
+          <div class="sub_item_carrito">
+            <h4>Artículo</h4>
+          </div>
+          <div class="sub_item_carrito">
+            <h4>Cantidad</h4>
+          </div>
+          <div class="sub_item_carrito">
+            <h4>Precio</h4>
+          </div>
+          <div class="sub_item_carrito">
+            <h4>Estatus</h4>
+          </div>
+        </div>
+        {% for row in pedido %}
+        <div class = "container_item">
+          <div class="img_compras sub_item_carrito">
+            <img src="{{ row["pic0"] }}">
+          </div>
+          <div class="sub_item_carrito">
+            <h5>{{ row["nombre"] }}</h5>
+            Talla: {{ row["talla"] }}
+          </div>
+          <div class="sub_item_carrito">
+            <h5>{{ row["cantidad"] }}</h5>
+          </div>
+          <div class="sub_item_carrito">
+            <h5>${{ row["precio"] }}.00</h5>
+          </div>
+          <div class="sub_item_carrito">
+            <h5>{{ row["estatus"] }}</h5>
+          </div>
+        </div>
+        {% endfor %}
+       <div class = "total">
+        <div>
+          <h4>Total a pagar: ${{ total }}.00</h4>
+        </div>
+        <div>
+          <form class="form-inline" action ="/pedidos" method="post">
+            <div class="form-group mb-2">
+              Escribe el folio de tu comprobante de pago aquí:
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="password" class="form-control" name="Folio" placeholder="Folio" required>
+              <input type="hidden" name="no_pedido" value="{{ pedido[0]["date"] }}">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Subir Folio</button>
+          </form>
+        </div>
+       </div>
+
+      <br></br>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+
+{% endblock %}
+
+<!--
+<form action="/pedidos" method="post">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#{{ total }}">
+            Añadir comprobante de pago
+          </button>
+
+          !-- Modal Pago --
+          <div class="modal fade" id="{{ total }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pedido {{ pedido[0]["date"] }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Para acreditar tu pago, escribe a continuación el folio de tu comprobante de pago.
+                    <br></br>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <label for="inputPassword2" class="sr-only">Folio</label>
+                      <input type="password" class="form-control" id="inputPassword2" placeholder="Folio">
+                      <input type="hidden" name="folio_pago" value="{{ pedido[0]["date"] }}">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </form>
+        -->
