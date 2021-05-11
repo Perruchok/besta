@@ -125,14 +125,6 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/login_view'
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
-LOGIN_URL = '/login_view'
-
 ##### from https://stackabuse.com/deploying-django-apps-to-heroku-from-github/ 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
