@@ -86,8 +86,8 @@ WSGI_APPLICATION = 'besta.wsgi.application'
 # Changed to heroku
 # (https://blog.usejournal.com/deploying-django-to-heroku-connecting-heroku-postgres-fcc960d290d1)
 
-    DATABASES = {}
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
