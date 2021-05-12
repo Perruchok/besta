@@ -86,8 +86,17 @@ WSGI_APPLICATION = 'besta.wsgi.application'
 # Changed to heroku
 # (https://blog.usejournal.com/deploying-django-to-heroku-connecting-heroku-postgres-fcc960d290d1)
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
+    # }
 
 AUTH_USER_MODEL = 'shop.User'
 
@@ -151,7 +160,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
 
-# This is apparently a hack 
+# Activate Django
 # https://blog.usejournal.com/deploying-django-to-heroku-connecting-heroku-postgres-fcc960d290d1
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
+del DATABASES['default']['OPTIONS']['sslmode']
