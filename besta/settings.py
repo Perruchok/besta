@@ -12,18 +12,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
-import dj_database_url
-import dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  #For Heroku
-
-# Steps to Using Postgres Remotely & SQLite Locally (https://blog.usejournal.com/deploying-django-to-heroku-connecting-heroku-postgres-fcc960d290d1)
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
 
 
 # Quick-start development settings - unsuitable for production
@@ -35,7 +28,7 @@ SECRET_KEY = 'mcdkw+uye52e@ejsd4&g2qr70dt46l2)c7%o=w+r2*i92)#v-n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bestashop.herokuapp.com']
+ALLOWED_HOSTS = ['bestashop.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -83,20 +76,14 @@ WSGI_APPLICATION = 'besta.wsgi.application'
 
 
 # Database
-# Changed to heroku
-# (https://blog.usejournal.com/deploying-django-to-heroku-connecting-heroku-postgres-fcc960d290d1)
-
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-# Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #     }
-    # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 AUTH_USER_MODEL = 'shop.User'
 
@@ -158,8 +145,3 @@ STATICFILES_DIRS = (
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-django_heroku.settings(locals())
-
-# Activate Django
-# https://blog.usejournal.com/deploying-django-to-heroku-connecting-heroku-postgres-fcc960d290d1
-del DATABASES['default']['OPTIONS']['sslmode']
