@@ -1,0 +1,50 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Envio
+{% endblock %}
+
+{% block main %}
+
+   {% if messages %}
+    <br></br>
+    <br></br>
+      {% for message in messages %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </button>
+        </div>
+      {% endfor %}
+   {% endif %}
+<br></br>
+
+<h1>Elige tu opción en envío</h1>
+
+<img src= "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/envios.jpg"  width = "50%"  class = "envios">
+
+<form action="{% url 'carrito' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlSelect1"><h5> Selecciona tu método de envío: </h5></label>
+    <select class="custom-select form-control-lg form-control" id="select_envio" name="envio" required>
+      <option value="taretan">Taretan ($15.00)</option>
+      <option value = "uruapan">Uruapan ($35.00)</option>
+      <option value= "sepomex">  Nacional - Correos de México ($60.00) </option>
+      <option value = "estafeta">Nacional - Estafeta/ampm/Redpack ($150.00) </option>
+      <option value = "personal">Entrega Personal (Gratis) </option>
+    </select>
+  </div>
+
+  <input class="btn btn-primary btn-lg" type="submit" value="Ir a Pago">
+  <input type="hidden" value="place_order" name="method">
+
+</form>
+
+
+<br></br>
+<br></br>
+<br></br>
+{% endblock %}

@@ -3,10 +3,10 @@
 
 {% block main %}
 
-  <div class="titulos border-top border-bottom border-warning">
+  <div class="titulos">
     Mis compras
   </div>
-  <br></br>
+  <br>
 
    {% if messages %}
       {% for message in messages %}
@@ -14,11 +14,13 @@
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>{{ message }}</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
           </button>
         </div>
         {% endfor %}
      {% endif %}
+
+
+
 
 
   {% if empty %}
@@ -26,10 +28,17 @@
     <a href="/"> Seguir comprando </a>
     <br></br>
   {% else %}
+
+  {% if fromenvio %} 
+  <img height= "600" src="https://raw.githubusercontent.com/Perruchok/besta_pictures/main/pago_besta.jpg">
+  <br>
+  <br>
+  {% endif %}
+
     <div class = "container_cart" style="overflow-x:auto;">
-        {% for ped_ord,total,ped_sets in ped_master %}
+        {% for ped_ord,total,ped_sets,envio_descrip,envio_price,ttotal in ped_master %}
             <h4>Pedido: {{ ped_ord }} </h4>
-            <div style="overflow-x:auto;">
+
               <table class="table align-middle">
                 <thead>
                   <tr>
@@ -48,47 +57,87 @@
                         Talla: {{ pedido.talla }}
                       </td>
                       <td>
+                        <br>
                         <h5>{{ pedido.cantidad }}</h5>
                       </td>
                       <td>
+                        <br>
                         <h5>${{ pedido.item.precio }}.00</h5>
                       </td>
                       <td>
+                        <br>
                         <h5>{{ pedido.estatus }}</h5>
                       </td>
                   </tr>
                   {% endfor %}
                   <tr>
-                    <td colspan="2">
-                      <h4>Total a pagar: ${{ total }}.00</h4>
+                    <td colspan="1">
+                      <h5> Subtotal: </h5>
                     </td>
-                   <td colspan="2">
-                      Escribe el folio de tu comprobante de pago aquí:
+                    <td colspan="1">
+                  
+                    </td>
+                    <td colspan="1">
+                      <h5>${{ total }}.00</h5>
+                    </td>
+                    <td colspan="1">
+                  
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="3">
-
+                    <td colspan="1">
+                      <h5>Envío:</h5>                                  
                     </td >
+                    <td colspan="1"> 
+                      <h6>{{ envio_descrip }}</h6>
+                    </td>
+                    <td colspan="1">
+                      <h5>${{ envio_price }}.00</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="1">
+                      <h5>Total:</h5>
+                    </td>
+                    <td colspan="1">
+
+                    </td>
                     <td>
-                      <form class="form-inline" action ="{% url 'pedidos' %}" method="post">
-                        {% csrf_token %}
-                        <div class="form-group mx-sm-3 mb-2">
-                          <input type="password" class="form-control input_folio" name="Folio" placeholder="Folio" required>
-                          <input type="hidden" name="no_pedido" value="{{ ped_ord }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-2">Subir Folio</button>
-                      </form>
+                      <h5>${{ ttotal }}.00</h5>
                     </td>
                   </tr>
                 </tbody>
               </table>
-            </div>
 
           <br></br>
         {% endfor %}
     </div>
+
+    {% if not fromenvio %} 
+    <div class = "center_pago">
+      <div class="item_user" type="button" data-bs-toggle="modal" data-bs-target="#Modal1">
+        <p> ¿Cómo realizar pago? </p>
+      </div>
+    </div>
+    {% endif %}  
+
   {% endif %}
+
+
+
+<!-- Modal For como realizar pago -->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="https://raw.githubusercontent.com/Perruchok/besta_pictures/main/pago_besta.jpg">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>  
 
 
 {% endblock %}

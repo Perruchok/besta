@@ -29,9 +29,9 @@
     <body>
 
         <!------------------------------------- Navigation bar ------------------------------->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="/">
-                <img src="{% static 'shop/icons/besta.jpg' %}"  height="70" class="d-inline-block align-top" alt="logo" loading="lazy" >
+                <img src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/toro.png"  height="80" class="d-inline-block align-top" alt="logo" loading="lazy" >
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto my_nav_block">
                     <li class="nav-item">
-                        <a class="nav-link" href="/sport">Sport</a>
+                        <a class="nav-link" href="/sport">Deportiva</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/banio">Trajes de Baño</a>
@@ -53,18 +53,21 @@
                      <li class="nav-item">
                         <a class="nav-link" href="/mandiles">Mandiles</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/mandiles">Twerk</a>
+                    </li>
                 </ul>
               </div>
             {% if user.is_authenticated %}
             <a class="navbar-brand" href="/">
-                <img src="{% static 'shop/icons/heart0.png' %}"  height="50" class="d-inline-block align-top" alt="love" loading="lazy" >
+                <img src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/corazon.png"  height="60" class="d-inline-block align-top" alt="love" loading="lazy" >
             </a>
             {% endif %}
             <a class="navbar-brand" href="{% url 'user' %}">
-                <img src="{% static 'shop/icons/user.png' %}"  height="50" class="d-inline-block align-top" alt="user" loading="lazy" >
+                <img src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/usuario.png"  height="60" class="d-inline-block align-top" alt="user" loading="lazy" >
             </a>
             <a class="navbar-brand" href="{% url 'carrito' %}">
-                <img src="{% static 'shop/icons/cart.png' %}"  height="50" class="d-inline-block align-top" alt="cart" loading="lazy" >
+                <img src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/carrito.png"  height="60" class="d-inline-block align-top" alt="cart" loading="lazy" >
             </a>
         </nav>
 
@@ -80,36 +83,40 @@
         <div class="row">
           <div class="col-12 col-md">
             <img class="mb-2" src="../../assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
-            <small class="d-block mb-3 text-muted">© 2020</small>
+            <small class="d-block mb-3 text-muted">© 2021</small>
           </div>
           <div class="col-6 col-md">
             <h5>Nosotros</h5>
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href="#">¿Quienes somos?</a></li>
-              <li><a class="text-muted" href="#">Contáctanos</a></li>
-              <li><a class="text-muted" href="#">461 340 9554</a></li>
-              <li><a class="text-muted" href="#">Otras cosas</a></li>
-              <li><a class="text-muted" href="#">Another one</a></li>
-              <li><a class="text-muted" href="#">Last time</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>Preguntas frecuentes</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Nose</a></li>
-              <li><a class="text-muted" href="#">Resource name</a></li>
-              <li><a class="text-muted" href="#">Another resource</a></li>
-              <li><a class="text-muted" href="#">Final resource</a></li>
+              <li><a class="text-muted" href="#">¿En dónde se ubucan?</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>Redes Sociales</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Facebook</a></li>
-              <li><a class="text-muted" href="#">Instagram</a></li>
-              <li><a class="text-muted" href="#">Youtube</a></li>
-              <li><a class="text-muted" href="#">Twitter</a></li>
-            </ul>
+            <div class="redes">
+              <div class="redes_item">
+                <a  href=" https://instagram.com/besta_tiendaderopa?utm_medium=copy_link">
+                  <img height="50" src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/insta_logo.png">
+                </a>
+              </div>
+              <div class="redes_item">
+                <a  href="https://web.facebook.com/bestatiendaderopa">
+                  <img height="50" src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/facebook_logo.png">
+                </a>
+              </div>
+              <div class="redes_item">
+                <a  href="#">
+                  <img height="50" src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/wp_logo.png">
+                </a>
+              </div>
+            
+            </div>
           </div>
         </div>
       </footer>

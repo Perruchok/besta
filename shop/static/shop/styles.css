@@ -50,7 +50,8 @@ main img
 }
 .nolink{
     text-decoration:none;
-    color:black;
+    color:white;
+
 }
 .containeritem div{
     padding : 10px;
@@ -124,6 +125,11 @@ main img
   opacity: .5;
 }
 
+.center_pago{
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+}
 
 .item_user
 {
@@ -136,14 +142,20 @@ main img
     border-color: grey;
     margin: 10px;
     border-radius: 5px;
-    font-family: "Lucida Console", Courier, monospace;
+    font-family:Arial, Helvetica, sans-serif;
     font-size: 20px;
-    background-color: rgb(255, 204, 0);
+    background-color:black;
+    color: white;
 }
 .item_user:hover
 {
     background: grey;
 
+}
+
+.nolink:hover{ 
+    text-decoration: none;
+    color:white:
 }
 
 .item_price{
@@ -153,18 +165,32 @@ main img
 {
     font-family: "Lucida Console", Courier, monospace;
     font-size:20px;
-    /*border: 1px solid;*/
 }
+
+.nav-link{
+    color:black;
+    font-family: ;
+}
+
+.navbar{
+    background-color:white;
+}
+
 
 .my_nav_block
 {
-    border: 3px solid;
     justify-content: space-between;
 }
 
 .navbar-nav > li{
   padding-left:30px;
   padding-right:30px;
+}
+
+.redes{
+    display:flex;
+    flex-direction: row;
+
 }
 
 carousel-item {
@@ -213,8 +239,24 @@ width: 100px;
 }
 
 .pedidos_img{
-    width:70px;
+    width:90px;
 }
+
+.button_quitar {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  th{
+      font-size:larger;
+  }
 
 @media (max-width: 768px) {
 

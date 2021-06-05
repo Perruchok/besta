@@ -3,7 +3,7 @@
 
 {% block main %}
 
-  <div class="titulos border-top border-bottom border-warning">
+  <div class="titulos">
     Carrito
   </div>
 
@@ -13,7 +13,6 @@
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{ message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
         </button>
       </div>
     {% endfor %}
@@ -27,46 +26,56 @@
   <h4> El carrito está vacío </h4>
   <br></br>
   {% else %}
-  <div class = "container_cart" >
-    <div class = "container_item">
-      <div class="img_carrito sub_item_carrito">
+  <div class = "container_cart" style="overflow-x:auto;">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th scope="col" colspan="2">Artículo</th>
+          <th scope="col">Detalle</th>
+          <th scope="col">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in carrito %}
+        <tr> 
+          <td colspan="1">
+            <img src="{{ row.item.pic0 }}" class = "pedidos_img">
+            <h5>{{ row.item.nombre }}</h5>
+          </td>
+          <td>
+            <br>
+            <br>
+            <form action="{% url 'carrito' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="cart_id" value="{{ row.id }}">
+              <input type="hidden" name="method" value="quitar">
+              <button class = "button_quitar" type="submit"> Quitar </button>
+            </form>
+          </td>
+          <td colspan="1">
+            <h5>Talla: {{ row.talla }} </h5>
+            <br>
+            {% if row.color != "False" %}
+            <h5>Color: {{row.color}} </h5>  
+            {% endif %}
+            <br>
+            <h5>Cantidad: {{ row.cantidad }} </h5>  
+          </td>
+          <td colspan="1">
+            <br>
+            <br>
+            <h5> ${{ row.item.precio }}.00 </h5>
+          </td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="3">
 
-      </div>
-      <div class="sub_item_carrito">
-        <h4>Artículo</h4>
-      </div>
-      <div class="sub_item_carrito">
-        <h4>Cantidad</h4>
-      </div>
-      <div class="sub_item_carrito">
-        <h4>Precio</h4>
-      </div>
-    </div>
-    {% for row in carrito %}
-    <div class = "container_item">
-      <div> <!--class="img_carrito sub_item_carrito"-->
-        <img src="{{ row.item.pic0 }}">
-      </div>
-      <div class="sub_item_carrito">
-        <h5>{{ row.item.nombre }}</h5>
-        <br></br>
-        Talla: {{ row.talla }}
-        <br></br>
-        <form action="{% url 'carrito' %}" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="cart_id" value="{{ row.id }}">
-          <input type="hidden" name="fin" value="quitar">
-          <button type="submit"> Quitar </button>
-        </form>
-      </div>
-      <div class="sub_item_carrito">
-        <h5>{{ row.cantidad }}</h5>
-      </div>
-      <div class="sub_item_carrito">
-        <h5>${{ row.item.precio }}.00</h5>
-      </div>
-    </div>
-    {% endfor %}
+          </td>
+        </tr>
+      </tbody> 
+    </table> 
+  </div>   
   </div>
   <div>
     <br></br>
@@ -76,11 +85,11 @@
   <div>
     <form action="{% url 'carrito' %}" method="post">
       {% csrf_token %}
-      <input type="hidden" name="fin" value="terminar" >
-      <button class="btn btn-success btn-lg" type="submit"> Finalizar pedido </button>
+      <input type="hidden" name="method" value="select_envio" >
+      <button class="btn btn-success btn-lg" type="submit"> Selecciona Método de Envío </button>
     </form>
   </div>
-  {% endif %}
+{% endif %}
 
 
 {% endblock %}

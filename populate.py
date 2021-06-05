@@ -4,7 +4,7 @@
 from shop.models import Item
 
 a = Item(
-    nombre = "Producto 1", 
+    nombre = "Blusa sport", 
     precio = 350, 
     categoria = "SP", 
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1.jpg", 
@@ -12,7 +12,9 @@ a = Item(
     n_pics = 3,
     pic1 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_1.jpg",
     pic2 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_2.jpg", 
-    pic3 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_3.jpg"
+    pic3 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_3.jpg", 
+    color_disp = "Azul,Caquis,Rosa",
+    descripcion = "Buena para hacer ejercicio   "
 )
 a.save()
 
@@ -25,6 +27,7 @@ a = Item(
     n_pics = 2,
     pic1 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2_1.jpg",
     pic2 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2_2.jpg", 
+    color_disp = "Blanco Liso, Rojo pasion"
 )
 a.save()
 
@@ -75,5 +78,7 @@ a = Item(
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport7.jpg", 
     sexo = "ELLA", 
     n_pics = 0,
+    color_disp = "Rojo,Azul Cielo,Turqueza,Amarillo,Rosa mexicano"
 )
 a.save()
+

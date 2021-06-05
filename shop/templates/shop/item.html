@@ -15,7 +15,6 @@ Brother
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>{{ message }}</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
       </button>
     </div>
   {% endfor %}
@@ -75,6 +74,14 @@ Brother
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
+              {% if colores %}
+              <select class="custom-select" id="select_color" name="color" required>
+                <option selected>COLOR</option>
+                {% for color in colores %}
+                <option value="{{ color }}">{{ color }}</option>
+                {% endfor %}
+              </select>
+              {% endif %}
             </div>
 
 
@@ -100,7 +107,7 @@ Brother
             <div class="modal-content">
 
               <div class="modal-body">
-                <img src="https://raw.githubusercontent.com/Perruchok/besta_pictures/main/guia_de_tallas.jpg">
+                <img src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/guia_tallas/tallas_mujer.jpg">
               </div>
             </div>
           </div>

@@ -3,8 +3,8 @@
 
 {% block main %}
   <br></br>
-  <div class=" border-top border-bottom border-warning titulos">
-    Bienvenido a tu cuenta BESTA
+  <div class="titulos">
+    Bienvenidx a tu cuenta BESTA
   </div>
     <br></br>
    
@@ -14,7 +14,6 @@
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>{{ message }}</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
@@ -24,7 +23,7 @@
     <br></br>
     <div class="containeruser">
       <div class="item">
-        <img src="{% static 'shop/icons/user2.png'%}" alt=noalt>
+        <img src="https://raw.githubusercontent.com/YURIHW/besta_pictures/main/logos/usuario.png" alt=noalt>
       </div>
       <div class="user_container">
         <div class="item_user" type="button" data-bs-toggle="modal" data-bs-target="#Modal1">
@@ -33,6 +32,11 @@
         <a class ="nolink" href="{% url 'pedidos' %}">
           <div class="item_user" type="button" >
             <p> Mis compras  </p>
+          </div>
+        </a>
+        <a class ="nolink" href="{% url 'logout_view' %}">
+          <div class="item_user" type="button" >
+            <p> Cerrar sesión  </p>
           </div>
         </a>
       </div>

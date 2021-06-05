@@ -11,8 +11,9 @@ from random import randint
 from .models import User, Item, Carrito, Pedido
 
 def index(request):
-    #Inicializar variable 
+    #Inicializar variables
     request.session["message"] = False
+    request.session["fromenvio"] = False
     #Render main page
     return render(request,"shop/home.html",{})
 
@@ -46,29 +47,39 @@ def view(request):
         for i in range(0,n_pics):
             pic_name = "pic" + str(i + 1)
             pic_adress.append(getattr(aitem,pic_name))
+        # Colores disponibles 
+        colores = aitem.color_disp.split(',')    
         # Render view page
+        if colores == ['']: 
+            colores = False
+       
         return render(request, "shop/item.html", {
             "pic_adress" : pic_adress,
-            "item" : aitem
+            "item" : aitem,
+            "colores": colores
         })
 
     else: # Añadir al carrito
     
         #Redirect to login if user is not logged in
+        
         if request.user.id is None:
-            request.session['fromitem'] = True
-            return redirect('login')
+            messages.info(request, 'Por favor inicia sesión para poder continuar')
+            return redirect('login_view')
 
         #Do add item ro carrito
         else:
             #Get information of item from form
             talla = request.POST["talla"]
             cantidad = request.POST["cantidad"]
+            color = request.POST.get('color', False) #Provides a value if it does not exist
             item_id = request.session['item_id'] #Lets be careful here...
             #Validar talla y cantidad
             if talla == "TALLA" or cantidad == "CANTIDAD":
                 messages.warning(request, 'Selecciona talla y cantidad.')
-
+                return redirect('view')
+            if color == "COLOR":
+                messages.warning(request, 'Selecciona color')
                 return redirect('view')
 
             else:
@@ -77,7 +88,8 @@ def view(request):
                     item = Item.objects.get(id = item_id),
                     cantidad = cantidad,
                     talla = talla,
-                    user = User.objects.get(id=request.user.id)
+                    user = User.objects.get(id=request.user.id), 
+                    color = color
                     )
                 carro.save()
                 #Redireccionar al carrito
@@ -155,17 +167,20 @@ def carrito(request):
 
     else:
 
-        #Finalizar compra?
-        fin = request.POST["fin"]
+        #Method
+        method = request.POST["method"]
 
-        if fin == "terminar":
+        if method == "place_order":
 
-            #If user has no adress, do not proceed
-            user = User.objects.get(id = request.user.id)
-            adress = user.direccion
-            if not adress:
-                messages.warning(request, "Por favor actualiza tu información de dirección y contacto para poder comprar")
-                return redirect('user')
+            #Colocar pedido
+            # user = User.objects.get(id = request.user.id)
+            # adress = user.direccion
+            # if not adress:
+            #     messages.warning(request, "Por favor actualiza tu información de dirección y contacto para poder comprar")
+            #     return redirect('user')
+
+            #Obtener método de envío
+            envio = request.POST["envio"]
 
             #Pasar carrito de user a tabla de pedidos
             temp = Carrito.objects.filter(user = User.objects.get(id = request.user.id))
@@ -180,23 +195,30 @@ def carrito(request):
                     estatus = "Pedido", 
                     fecha = datetime.datetime.now(), 
                     folio = 0, 
-                    identifier = identifier
+                    identifier = identifier, 
+                    envio = envio
                 )
                 pedido.save()
             #Limpiar carrito 
             temp.delete()
 
-            #Pedir usuario que mande comprobante de compra a usuario?
-            #Crear master account para ver pedidos e información de usuarios
+            #Para el display del pago: 
+            request.session["fromenvio"] = True
+
             return redirect('pedidos')
 
-        else:
+        elif method == "quitar":
             #Quitar del carrito elemento con id: cart_id
             cart_id = request.POST['cart_id']
             todrop = Carrito.objects.get(id = cart_id)
             todrop.delete()
 
             return redirect('carrito')
+
+        elif method == "select_envio": 
+
+            #Redireccionar a método de envío
+            return render(request, "shop/envio.html")
 
 @login_required
 def pedidos(request):
@@ -216,15 +238,18 @@ def pedidos(request):
         ped_ord = [] #Fechas de conjuntos de pedidos ordenadas
         ped_sets = [] # Sets de pedidos ordenados por fecha tal como en ped_ord
         total = [] # Sets de precios totoales correspodientes a ped_sets
+        envios = []
         subtotal = 0
         temp = [] #Temporary list to append set to ped_sets
         idenfifier = pedidos.first().identifier #Fecha del primer pedido  ########################### CHEACAR ESTE LOOP 
+        envio1 = pedidos.first().envio #Dato del primer envío.
         for pedido in pedidos:
             if idenfifier == pedido.identifier:
                 temp.append(pedido)
                 subtotal = subtotal + pedido.cantidad * pedido.item.precio
             else:
                 #Close last set of items with the same date:
+                envios.append(envio1)
                 ped_ord.append(idenfifier)
                 ped_sets.append(temp)
                 total.append(subtotal)
@@ -235,18 +260,50 @@ def pedidos(request):
                 temp.append(pedido)
                 subtotal = subtotal + pedido.cantidad * pedido.item.precio
                 #Update date
+                envio1 = pedido.envio
                 idenfifier = pedido.identifier
         #Close final list:
+        envios.append(envio1)
         ped_ord.append(idenfifier)
         ped_sets.append(temp)
         total.append(subtotal)
-    
+        ################################ Actually bad design
+        envio_descrip = []
+        envio_price = []
+        for envio in envios: 
+            if envio == "taretan": 
+                envio_descrip.append("Taretan - Envío en Moto")
+                envio_price.append(15)
+            elif envio == "uruapan": 
+                envio_descrip.append("Uruapan - Envío en Moto")    
+                envio_price.append(35)
+            elif envio == "sepomex": 
+                envio_descrip.append("Nacional - Correos de México")
+                envio_price.append(60)
+            elif envio == "estafeta" : 
+                envio_descrip.append("Nacional - Estafeta/ampm/Redpack")
+                envio_price.append(150)
+            else: 
+                envio_descrip.append("Entrega personal")
+                envio_price.append(0)     
+        ######################################      
+        ttotal = []
+        for sub,enviop in zip(total,envio_price):
+            ttotal.append(sub+enviop)
+
         if request.session["message"]:
             messages.warning(request, "Folio actualizado correctamente. Nuestro staff revisara tu pago, y lo verificará a la brevedad")
             request.ssession["message"] = False
+
+        #Para mostrar método de pago
+        fromenvio = request.session["fromenvio"]
+        request.session["fromenvio"] = False
+         
+
         return render(request, "shop/pedidos.html", {
-            "ped_master" : zip(ped_ord,total,ped_sets), 
-            "empty": empty
+            "ped_master" : zip(ped_ord,total,ped_sets,envio_descrip,envio_price,ttotal), 
+            "empty": empty, 
+            "fromenvio": fromenvio
         } )
 
 
@@ -302,6 +359,7 @@ def user(request):
 
 @staff_member_required
 def master(request):
+
     if request.method == "GET" :
         #Mostrar pedidos master
         #Check items on pedidos
@@ -345,25 +403,17 @@ def master(request):
         ped_sets.append(temp)
         total.append(subtotal)
 
-        # return render(request, "shop/apology.html", {
-        # "ped_master" : zip(ped_ord,total,ped_sets), 
-        # "ped_ord" : ped_ord, 
-        # "total" : total,
-        # "ped_sets" : ped_sets, 
-        # "hack": hack
-        #  })
-
         return render(request, "shop/master.html", {
             "ped_master" : zip(hack,ped_ord,total,ped_sets), 
             "empty": empty
         } )
 
     else:
-        estatus = request.POST["estatus"]
-        identifier = request.POST["identifier"]
-        user_id = request.POST["user"]
+        estatus = request.POST["estatus"] # Status to be assigned
+        identifier = request.POST["identifier"] #Pedido identifier
+        user_id = request.POST["user"] #User whose pedido belongs
         #Actualizar estatus en base de datos
-        pedidos = Pedidos.objects.filter(idenfifier = identifier, user = User.objects.get(id = user_id))
+        pedidos = Pedido.objects.filter(identifier = identifier, user = User.objects.get(id = user_id))
         for pedido in pedidos: 
             pedido.estatus = estatus
             pedido.save()
@@ -371,9 +421,13 @@ def master(request):
 
 
 
-            # return render(request, "shop/apology.html", {
-    #     "ped_master" : zip(ped_ord,total,ped_sets), 
-    #     "ped_ord" : ped_ord, 
-    #     "total" : total,
-    #     "ped_sets" : ped_sets
-    #      })
+        #  return render(request, "shop/apology.html", {
+        #     "ped_master" : colores, 
+        #     "ped_ord" : 0 ,
+        #     "total" : 0,
+        #     "ped_sets" : 0
+        #     })
+
+    
+    ########### COSAS POR HACER DESPUES 
+    # Averiguar si es posible crear funciones en django para no repetir algunos pedazos de código
