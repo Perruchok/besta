@@ -21,6 +21,8 @@ Brother
 {% endif %}
 <br></br>
 
+
+
 <div class="containeritem">
     <div class="item_view">
       <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
@@ -46,14 +48,15 @@ Brother
   
     </div>
     <div>
+      <div>
+        <h3>{{ item.nombre }}</h3>
+      </div>
+      <div>
+        ${{ item.precio }}.00
+      </div>
+      {% if item.soldout == 0 %}
       <form action="{% url 'view' %}" method="post">
         {% csrf_token %}
-        <div>
-          <h3>{{ item.nombre }}</h3>
-        </div>
-        <div>
-          ${{ item.precio }}.00
-        </div>
         <div>
 
             <div class="input-group mb-3">
@@ -98,6 +101,11 @@ Brother
           <button type="submit" class="btn btn-primary btn-lg btn-block">Agregar al carrito</button>
         </div>
       </form>
+      {% else %}
+      <div>
+        Este artículo se ha agotado. 
+      </div>
+      {% endif %}
     </div>
 </div>
 

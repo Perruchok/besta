@@ -1,0 +1,44 @@
+{% extends "shop/layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+
+<h6> Tu paquete será enviado con los siguientes datos: </h6>
+
+<br>
+
+<p>
+    <b> {{info.first_name}} {{info.last_name}} </b> <br>
+    {{ info.calle }} {{ info.n_exterior }}  {{ info.n_interior }} <br>
+    {{info.colonia}} <br>
+    {{ info.municipio }}, {{ info.estado}} {{info.cpp}}<br>
+    México <br>
+    Número de teléfono: {{ info.telefono }}
+</P>
+
+<br>
+
+
+
+<div class="jiggle">
+    <div class="jiggleson">
+        <form  action="{% url 'carrito' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="modify_adress" name="method">
+            <button class="btn btn-secondary btn-lg"> Modificar </button>
+        </form>
+    </div>
+   <div class="jiggleson">
+    <form action="{% url 'carrito' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" value="place_order" name="method"> 
+        <button class="btn btn-primary btn-lg"> Finalizar </button> 
+    </form>
+   </div>
+</div>
+
+
+{% endblock %}

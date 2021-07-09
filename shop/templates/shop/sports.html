@@ -14,8 +14,11 @@
         {% csrf_token %}
         <input type="hidden" name="item_id" value="{{ item.id }}">
         <button type="submit" class="button_sport">
-            <div class="imageblur">
-              <img src ="{{ item.pic0 }}">
+            <div class="imageblur"> 
+              <img class = "item_picture" src="{{ item.pic0 }}">        
+              {% if item.soldout != 0 %}
+              <img class = "marca" src="https://raw.githubusercontent.com/Perruchok/besta_pictures/main/agotado.png">
+              {% endif %}
             </div>
             <p> </p>
             <p class="item_name">{{ item.nombre }}</p>
@@ -29,53 +32,3 @@
   <br></br>
 
 {% endblock %}
-
-<!--- </div>
-  <br></br>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4 item">
-            <img src="/static/sport1.jpg">
-            <br></br>
-            <p>Blusa nombre1</p>
-            <p>$150.00</p>
-      </div>
-      <div class="col-sm-4">
-            <img src="/static/sport2.jpg">
-            <br></br>
-            <p>Blusa Nombre2</p>
-            <p>$150.00</p>
-      </div>
-      <div class="col-sm-4">
-          <img src="/static/sport3.jpg">
-          <br></br>
-          <p>Short rosado</p>
-          <p>$200.00</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-            <img src="/static/sport1.jpg">
-            <br></br>
-            <p>Blusa adfadfa</p>
-            <p>$150.00</p>
-      </div>
-      <div class="col-sm-4">
-            <img src="/static/sport2.jpg">
-            <br></br>
-            <p>Bdfds fdadsf </p>
-            <p>$150.00</p>
-      </div>
-      <div class="col-sm-4">
-          <img src="/static/sport3.jpg">
-          <br></br>
-          <p>Bkjhdfa ajdhfa</p>
-          <p>$150.00</p>
-      </div>
-    </div>
-
-  </div>
-
-  <br></br>
-
-  -->

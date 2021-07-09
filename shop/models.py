@@ -9,7 +9,8 @@ class User(AbstractUser):
     N_exterior = models.CharField(max_length=10,blank=True)
     colonia = models.CharField(max_length=50,blank=True)
     municipio = models.CharField(max_length =20,blank=True)
-    estado = models.CharField(max_length=20,blank=True)
+    estado = models.CharField(max_length=20,blank=True) 
+    ciudad = models.CharField(max_length=20,blank=True) 
 
 
 
@@ -38,6 +39,7 @@ class Item(models.Model):
     pic3 = models.CharField(max_length=256, blank=True)
     pic4 = models.CharField(max_length=256, blank=True)
     color_disp = models.CharField(max_length=256, blank = True) 
+    soldout = models.IntegerField(blank=True, default=0)
 
 class Carrito(models.Model): 
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_watched")    

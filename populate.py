@@ -37,7 +37,7 @@ a = Item(
     categoria = "SP", 
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport3.jpg", 
     sexo = "ELLA", 
-    n_pics = 0,
+    n_pics = 0
 )
 a.save()
 
@@ -47,7 +47,7 @@ a = Item(
     categoria = "SP", 
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport4.jpg", 
     sexo = "ELLA", 
-    n_pics = 0,
+    n_pics = 0
 )
 a.save()
 
@@ -57,7 +57,7 @@ a = Item(
     categoria = "SP", 
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport5.jpg", 
     sexo = "ELLA", 
-    n_pics = 0,
+    n_pics = 0
 )
 a.save()
 
@@ -67,7 +67,7 @@ a = Item(
     categoria = "SP", 
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport6.jpg", 
     sexo = "ELLA", 
-    n_pics = 0,
+    n_pics = 0
 )
 a.save()
 
@@ -78,7 +78,7 @@ a = Item(
     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport7.jpg", 
     sexo = "ELLA", 
     n_pics = 0,
-    color_disp = "Rojo,Azul Cielo,Turqueza,Amarillo,Rosa mexicano"
+    color_disp = "Rojo,Azul Cielo,Turqueza,Amarillo,Rosa mexicano", 
 )
 a.save()
 

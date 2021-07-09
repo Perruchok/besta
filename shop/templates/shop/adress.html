@@ -1,0 +1,73 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Dirección
+{% endblock %}
+
+{% block main %}
+
+<h2>¿A qué dirección mandaremos tu paquete?</h2>
+<br>
+    <div class = "formdiv">
+        <form action="{% url 'carrito' %}" method="post">
+            {% csrf_token %}
+            <h5>Destinatario: </h5>
+            <div class="row g-3">
+                <div class="col">
+                  <input autofocus class="form-control" type="text" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="col">
+                  <input autofocus class="form-control" type="text" name="apellidos" placeholder="Apellidos" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    <input autofocus class="form-control" type="text" name="telefono" placeholder="Teléfono" required>
+                </div>
+            </div>
+            <h5>Domicilio:</h5>
+            <div class="row">
+                <div class="col">
+                    <input autofocus class="form-control" type="text" name="calle" placeholder="Calle" required>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="n_interior" placeholder="Número interior" required>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="n_exterior" placeholder="Número exterior" required>
+                </div>
+            </div>
+            <br>
+            <div class="row"> 
+                <div class="col-6">
+                    <input class="form-control" type="text" name="colonia" placeholder="Colonia" required>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="text" name="municipio" placeholder="Municipio o Delegación" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4">
+                    <input class="form-control" type="text" name="estado" placeholder="Estado" required>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="text" name="ciudad" placeholder="Ciudad" required>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="text" name="cpp" placeholder="Código Postal" required>
+                </div>
+            </div>
+            <br>
+
+            <input class="btn btn-primary btn-lg" type="submit" value="Guardar">
+            <input type="hidden" value="save_adress" name="method">
+        </form> 
+    </div>
+
+
+
+<br>
+{% endblock %}

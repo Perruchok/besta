@@ -4,7 +4,7 @@ main .form-control
     display: inline-block;
 
     /* override Bootstrap's 100% width for form controls */
-    width: auto;
+   /* width: auto;*/
 }
 
 main
@@ -114,6 +114,31 @@ main img
 }
 
 
+.imageblur{
+    position: relative; 
+    left: 0; 
+    top: 0;
+}
+.item_picture{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.marca{
+    position: absolute;
+    top: 80px;
+    left: 0px;
+}
+
+.formdiv{
+    width: 50%;
+    margin-left: 25%;
+
+}
+.form_init{
+    margin-left: 40%;
+    width: 20%;
+}
 
 .carousel-control-next,
 .carousel-control-prev /*, .carousel-indicators */ {
@@ -155,7 +180,7 @@ main img
 
 .nolink:hover{ 
     text-decoration: none;
-    color:white:
+    color:white;
 }
 
 .item_price{
@@ -169,7 +194,7 @@ main img
 
 .nav-link{
     color:black;
-    font-family: ;
+    font-family: "Lucida Console", Courier, monospace;
 }
 
 .navbar{
@@ -185,6 +210,19 @@ main img
 .navbar-nav > li{
   padding-left:30px;
   padding-right:30px;
+}
+
+.colecciones-button{
+    color: black;
+    border-color: rgb(175, 15, 15)  ;
+    background-color: white  ;
+    border-radius: 12px;
+    height: 45px;
+    border: 2px solid rgb(235, 226, 226); /* Green */
+    padding: 5px;
+    font-size: 15px;
+    padding-top: 10px;
+
 }
 
 .redes{
@@ -258,6 +296,16 @@ width: 100px;
       font-size:larger;
   }
 
+  .jiggle{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+
+  .jiggleson{
+      margin: 10px;
+  }
+
 @media (max-width: 768px) {
 
     .containersport, .containeritem, .container_cart
@@ -283,6 +331,15 @@ width: 100px;
     }
     .titulos{
         font-size: 25px;
+    }
+
+    .form_init{
+        margin: 5%;
+        width: 90%;
+    }
+    .formdiv{
+        margin: 5%;
+        width:90%;
     }
 }
 

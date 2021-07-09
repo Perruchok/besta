@@ -172,15 +172,8 @@ def carrito(request):
 
         if method == "place_order":
 
-            #Colocar pedido
-            # user = User.objects.get(id = request.user.id)
-            # adress = user.direccion
-            # if not adress:
-            #     messages.warning(request, "Por favor actualiza tu información de dirección y contacto para poder comprar")
-            #     return redirect('user')
-
             #Obtener método de envío
-            envio = request.POST["envio"]
+            envio = request.session["envio"]
 
             #Pasar carrito de user a tabla de pedidos
             temp = Carrito.objects.filter(user = User.objects.get(id = request.user.id))
@@ -219,6 +212,92 @@ def carrito(request):
 
             #Redireccionar a método de envío
             return render(request, "shop/envio.html")
+
+        elif method == "goto_adress":
+
+            #Obtener método de envío
+            envio = request.POST["envio"]
+            #Guardar método de envío en variable temporal
+            request.session["envio"] = envio
+
+            # Si es envío personal, place order
+            if envio == "personal":
+                ## Función de place order #############################################
+                #Pasar carrito de user a tabla de pedidos
+                temp = Carrito.objects.filter(user = User.objects.get(id = request.user.id))
+                identifier = randint(1111,9999)
+                for entry in temp:
+                    pedido = Pedido(
+                        item = entry.item,
+                        cantidad = entry.cantidad, 
+                        talla = entry.talla, 
+                        color = entry.color,
+                        user = entry.user, 
+                        estatus = "Pedido", 
+                        fecha = datetime.datetime.now(), 
+                        folio = 0, 
+                        identifier = identifier, 
+                        envio = envio
+                    )
+                    pedido.save()
+                #Limpiar carrito 
+                temp.delete()
+
+                #Para el display del pago: 
+                request.session["fromenvio"] = True
+
+                return redirect('pedidos')
+                #########################################################
+
+            #Si no es envío personal, se necesita el domicilio
+            else: 
+
+                #Averiguar si el usuario ya tiene domicilio registrado
+                info = User.objects.get(id = request.user.id)
+                calle = info.calle
+                if len(calle) == 0 :
+                    domicilio  = False
+                else: 
+                    domicilio = True  
+
+                #Si no está registrado, que llene formulario       
+                if domicilio  == False:
+                    return render(request, "shop/adress.html",{
+                        
+                    })
+                #De otra manera, ir derecto a "casi finializas"    
+                else: 
+                    return render(request, "shop/almost.html",{
+                        "info":info
+                    })
+
+
+        elif method == "save_adress":
+
+            #Update user information
+            userinfo = User.objects.get(id = request.user.id)
+            userinfo.first_name = request.POST["nombre"]
+            userinfo.last_name = request.POST["apellidos"]
+            userinfo.telefono = request.POST["telefono"]
+            userinfo.calle = request.POST["calle"]
+            userinfo.N_interior = request.POST["n_interior"]
+            userinfo.N_exterior = request.POST["n_exterior"]
+            userinfo.colonia = request. POST["colonia"]
+            userinfo.estado = request.POST["estado"]
+            userinfo.ciudad = request.POST["ciudad"]
+            userinfo.cpp = request.POST["cpp"]
+            userinfo.save()
+
+            #Redirect to almost
+            return render(request, "shop/almost.html",{
+                      "info":userinfo
+                    })
+
+        elif method == "modify_adress": 
+            return render(request, "shop/adress.html",{
+                        
+                    })
+
 
 @login_required
 def pedidos(request):
@@ -336,15 +415,20 @@ def user(request):
 
     else:
         #User is trying to update information
-        #Suppose information is correctly formated
-        #Probably, sanitize inputs in the future
+        # I suppose information is correctly formated. Probably, sanitize inputs in the future
 
         #Update user information
         userinfo = User.objects.get(id = request.user.id)
-        userinfo.nombre = request.POST["name"]
-        userinfo.cpp = request.POST["cp"]
-        userinfo.telefono = request.POST["phone"]
-        userinfo.direccion = request.POST["adress"]
+        userinfo.first_name = request.POST["nombre"]
+        userinfo.last_name = request.POST["apellidos"]
+        userinfo.telefono = request.POST["telefono"]
+        userinfo.calle = request.POST["calle"]
+        userinfo.N_interior = request.POST["n_interior"]
+        userinfo.N_exterior = request.POST["n_exterior"]
+        userinfo.colonia = request. POST["colonia"]
+        userinfo.estado = request.POST["estado"]
+        userinfo.ciudad = request.POST["ciudad"]
+        userinfo.cpp = request.POST["cpp"]
         userinfo.save()
 
         #Info Updated
@@ -356,6 +440,17 @@ def user(request):
             # return render(request, "shop/apology.html", {
             # "mesage" :
             #  })
+
+
+@login_required
+def user_info(request):
+    if request.method == "GET":
+        return render(request,"shop/adress.html", {
+
+        })
+    else: 
+        return None 
+
 
 @staff_member_required
 def master(request):
