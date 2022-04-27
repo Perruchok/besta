@@ -18,14 +18,19 @@ def index(request):
     return render(request,"shop/home.html",{})
 
 def sport(request): 
+
     #Inicializar variable 
     request.session["message"] = False
     if request.method == "GET": 
+
         #Query database for sport items
-        sports = Item.objects.filter(categoria="SP")
+        category = request.GET.get("category")
+        sports = Item.objects.filter(categoria=category)
+        
         #Render sport page
         return render(request,"shop/sports.html", {
-            "sports" : sports
+            "sports" : sports, 
+            "title": request.GET.get("title"),
         })    
 
     else:
