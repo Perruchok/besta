@@ -4,84 +4,234 @@
 from shop.models import Item
 
 def main():
+
+    # ------------------------------   SPORT ITEMS -----------------------------------
+    # a = Item(
+    #     nombre = "Blusa sport", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 3,
+    #     pic1 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_1.jpg",
+    #     pic2 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_2.jpg", 
+    #     pic3 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_3.jpg", 
+    #     color_disp = "Azul,Caquis,Rosa",
+    #     descripcion = "Buena para hacer ejercicio   "
+    # )
+    # a.save()
+
+    # a = Item(
+    #     nombre = "Producto 2", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 2,
+    #     pic1 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2_1.jpg",
+    #     pic2 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2_2.jpg", 
+    #     color_disp = "Blanco Liso, Rojo pasion"
+    # )
+    # a.save()
+
+    # a = Item(
+    #     nombre = "Producto 3", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport3.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 0
+    # )
+    # a.save()
+
+    # a = Item(
+    #     nombre = "Producto 4", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport4.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 0
+    # )
+    # a.save()
+
+    # a = Item(
+    #     nombre = "Producto 5", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport5.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 0
+    # )
+    # a.save()
+
+    # a = Item(
+    #     nombre = "Producto 6", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport6.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 0
+    # )
+    # a.save()
+
+    # a = Item(
+    #     nombre = "Producto 7", 
+    #     precio = 350, 
+    #     categoria = "SP", 
+    #     pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport7.jpg", 
+    #     sexo = "ELLA", 
+    #     n_pics = 0,
+    #     color_disp = "Rojo,Azul Cielo,Turqueza,Amarillo,Rosa mexicano", 
+    # )
+    # a.save()
+
     a = Item(
-        nombre = "Blusa sport", 
-        precio = 350, 
-        categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1.jpg", 
-        sexo = "ELLA", 
-        n_pics = 3,
-        pic1 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_1.jpg",
-        pic2 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_2.jpg", 
-        pic3 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport1_3.jpg", 
-        color_disp = "Azul,Caquis,Rosa",
-        descripcion = "Buena para hacer ejercicio   "
+    nombre = "Short ajustable", 
+    precio = 300, 
+    categoria = "SP", 
+    pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva1.JPG", 
+    sexo = "", 
+    n_pics = 3,
+    pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva1_1.JPG",
+    pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva1_2.JPG", 
+    pic3 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva1_3.JPG", 
+    color_disp = "negro, amarillo, rojo, rosa mexicano, azul rey, verde menta",
+    descripcion = "Short deportivo que llega hasta media pierna, Contiene tiras a los costados que ajustan la altura del short haciéndolo más corto."
     )
     a.save()
 
     a = Item(
-        nombre = "Producto 2", 
-        precio = 350, 
+        nombre = "Top básico",
+        precio = 200,
+        categoria = "SP",
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva2.PNG", 
+        sexo = "", 
+        n_pics = 1,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva2_1.PNG",
+        color_disp = "negro, amarillo, rojo, rosa mexicano, azul rey, verde menta",
+        descripcion = "Top de licra de colores brillantes, ideal para hacer ejercicio o para un look más formal.",
+    )
+    a.save()
+
+    a = Item(
+        nombre = "Top deportivo", 
+        precio = 200, 
         categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2.jpg", 
-        sexo = "ELLA", 
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva3.JPG", 
+        sexo = "", 
         n_pics = 2,
-        pic1 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2_1.jpg",
-        pic2 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport2_2.jpg", 
-        color_disp = "Blanco Liso, Rojo pasion"
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva3_1.JPG",
+        pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva3_2.JPG",
+        color_disp = "negro, amarillo, rojo, rosa mexicano, azul rey, verde menta",
+        descripcion = "Top deportivo que llega a la cintura. Cómodo para entrenar y para vestir casual."
     )
     a.save()
 
     a = Item(
-        nombre = "Producto 3", 
-        precio = 350, 
+        nombre = "Top de lado", 
+        precio = 300, 
         categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport3.jpg", 
-        sexo = "ELLA", 
-        n_pics = 0
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva4.PNG", 
+        sexo = "", 
+        n_pics = 2,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva4_1.PNG",
+        color_disp = "negro, amarillo, rojo, rosa mexicano, azul rey, verde menta",
+        descripcion = "Top con ambos tirantes del lado derecho. Úsalo para salir o para ejercitarte."
     )
     a.save()
 
     a = Item(
-        nombre = "Producto 4", 
+        nombre = "Short biker", 
         precio = 350, 
         categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport4.jpg", 
-        sexo = "ELLA", 
-        n_pics = 0
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva5.PNG", 
+        sexo = "él, ella", 
+        n_pics = 3,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva5_1.PNG",
+        pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva5_2.PNG",
+        pic3 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva5_3.PNG",
+        color_disp = "negro, amarillo, rojo, rosa mexicano, azul rey, verde menta",
+        descripcion = "Short que llega arriba de la rodilla. Ideal para rodar y lucir cool. Puedes pedir el modelo 'él' para mayor espacio en la entrepierna."
     )
     a.save()
 
     a = Item(
-        nombre = "Producto 5", 
-        precio = 350, 
+        nombre = "Top resorte", 
+        precio = 200, 
         categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport5.jpg", 
-        sexo = "ELLA", 
-        n_pics = 0
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva6.PNG", 
+        sexo = "", 
+        n_pics = 2,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva6_1.PNG",
+        pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva6_2.PNG",
+        color_disp = "negro, amarillo, rojo, rosa mexicano, azul rey, verde menta",
+        descripcion = "Top con tirantes coquetos. Te hará lucir lindx en cualquier ocasión."
     )
     a.save()
 
     a = Item(
-        nombre = "Producto 6", 
-        precio = 350, 
+        nombre = "Blusa mesh", 
+        precio = 250, 
         categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport6.jpg", 
-        sexo = "ELLA", 
-        n_pics = 0
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7.JPG", 
+        sexo = "manga corta, manga larga", 
+        n_pics = 6,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7_1.JPG",
+        pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7_2.JPG", 
+        pic3 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7_3.JPG", 
+        pic4 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7_4.JPG",
+        pic5 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7_5.JPG", 
+        pic6 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva7_6.JPG",
+        color_disp = "negro, blanco, arena",
+        descripcion = "Blusa de elástica de mesh. Úsala encima de alguna prenda o sola. Puedes elegir manga corta o manga larga."
     )
     a.save()
 
     a = Item(
-        nombre = "Producto 7", 
-        precio = 350, 
+        nombre = "Rompevientos", 
+        precio = 400, 
         categoria = "SP", 
-        pic0 = "https://raw.githubusercontent.com/Perruchok/besta_pictures/main/sport/sport7.jpg", 
-        sexo = "ELLA", 
-        n_pics = 0,
-        color_disp = "Rojo,Azul Cielo,Turqueza,Amarillo,Rosa mexicano", 
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva8.JPG", 
+        sexo = "", 
+        n_pics = 5,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva8_1.JPG",
+        pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva8_2.JPG", 
+        pic3 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva8_3.JPG", 
+        pic4 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva8_4.JPG", 
+        pic5 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva8_5.JPG", 
+        color_disp = "negro, azul cielo, morado, amarillo neón. naranja neón",
+        descripcion = "Chamarra rompevientos y repelente al agua. Es muy ligera y ocupa poco espacio. Llévala cuando salgas a correr y quieras lucir bien."
     )
     a.save()
+
+    a = Item(
+        nombre = "Leotardo", 
+        precio = 200, 
+        categoria = "SP", 
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva9.JPG", 
+        sexo = "", 
+        n_pics = 2,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva9_1.JPG",
+        pic2 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva9_2.JPG", 
+        color_disp = "negro, azul marino, azul pastel, rojo, rosa pastel, rosa mexicano, guinda",
+        descripcion = "Leotardo básico de tirantes y escote a la espalda baja. Fábricado con tela muy cómoda para bailar."
+    )
+    a.save()
+
+    a = Item(
+        nombre = "Playera algodón", 
+        precio = 250, 
+        categoria = "SP", 
+        pic0 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva10.PNG", 
+        sexo = "", 
+        n_pics = 1,
+        pic1 = "https://raw.githubusercontent.com/YURIHW/besta_pictures/main/Dep/Deportiva1_1.JPG",
+        color_disp = "negro, gris, azul, morado, verde, amarillo, rojo, rosa mexicano, beige, blanco",
+        descripcion = "Playera manga corta con corte especial en la bastilla. El básico que le hacía falta a tu closet. Sus fibras de algodón ofrecen una textura suave al tacto."
+    )
+    a.save()
+
+    # ------------------------------   TWERK ITEMS -----------------------------------
 
     a = Item(
         nombre = "Short flojo", 

@@ -38,6 +38,8 @@ class Item(models.Model):
     pic2 = models.CharField(max_length=256, blank=True)
     pic3 = models.CharField(max_length=256, blank=True)
     pic4 = models.CharField(max_length=256, blank=True)
+    pic5 = models.CharField(max_length=256, blank=True)
+    pic6 = models.CharField(max_length=256, blank=True)
     color_disp = models.CharField(max_length=256, blank = True) 
     soldout = models.IntegerField(blank=True, default=0)
 
